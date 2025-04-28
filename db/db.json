@@ -30,5 +30,13 @@
       "email": "sama@test.com",
       "password": "sama@123"
     }
+  ],
+  "restaurant": [
+    {
+      "id": 1,
+      "name": "KFC",
+      "location": "Pakistan",
+      "contact": 11122233344
+    }
   ]
 }
