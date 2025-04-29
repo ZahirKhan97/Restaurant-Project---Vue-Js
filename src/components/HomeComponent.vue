@@ -8,7 +8,6 @@
         <table class="table table-hover table-bordered text-center align-middle">
           <thead class="table-light">
             <tr>
-              <th>ID</th>
               <th>Logo</th>
               <th>Name</th>
               <th>Address</th>
@@ -18,7 +17,6 @@
           </thead>
           <tbody>
             <tr v-for="restaurant in restaurants" :key="restaurant.id">
-              <td>{{ restaurant.id }}</td>
               <td>
                 <img :src="restaurant.logo" alt="" width="100" height="100" class="rounded-circle" />
               </td>
@@ -27,7 +25,7 @@
               <td>{{ restaurant.contact }}</td>
               <td>
                 <button class="btn btn-sm btn-info me-2">View</button>
-                <button class="btn btn-sm btn-warning me-2">Edit</button>
+                <router-link :to="`/update-restaurant/${restaurant.id}`" class="btn btn-sm btn-warning me-2">Edit</router-link>
                 <button class="btn btn-sm btn-danger">Delete</button>
               </td>
             </tr>

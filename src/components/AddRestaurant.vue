@@ -70,6 +70,7 @@ export default {
             if (response.status == 201) {
                 this.$router.push({ name: 'Home' })
             }
+            alert('Restaurant added successfully!')
         }
     }
 }
