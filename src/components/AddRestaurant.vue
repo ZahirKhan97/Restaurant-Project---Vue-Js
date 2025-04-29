@@ -10,24 +10,25 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="name" class="form-label"><strong>Restaurant Name</strong></label>
-                            <input type="text" id="name" v-model="restaurant.name" class="form-control" placeholder="Enter restaurant name"
-                                required />
+                            <input type="text" id="name" v-model="restaurant.name" class="form-control"
+                                placeholder="Enter restaurant name" required />
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="contact" class="form-label"><strong>Contact</strong></label>
-                            <input type="text" id="contact" v-model="restaurant.contact" class="form-control" placeholder="Enter contact number"
-                                required />
+                            <input type="text" id="contact" v-model="restaurant.contact" class="form-control"
+                                placeholder="Enter contact number" required />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="address" class="form-label"><strong>Address</strong></label>
-                            <input type="text" id="address" v-model="restaurant.address" class="form-control" placeholder="Enter restaurant address"
-                                required />
+                            <input type="text" id="address" v-model="restaurant.address" class="form-control"
+                                placeholder="Enter restaurant address" required />
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="logo" class="form-label"><strong>Logo</strong></label>
-                            <input type="text" id="logo" v-model="restaurant.logo" class="form-control" placeholder="Enter Logo URL" />
+                            <input type="text" id="logo" v-model="restaurant.logo" class="form-control"
+                                placeholder="Enter Logo URL" />
                         </div>
                     </div>
                     <div class="text-end mt-4">
@@ -45,6 +46,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: 'AddRestaurantComponent',
     data() {
@@ -58,8 +60,16 @@ export default {
         }
     },
     methods: {
-        addRestaurant() {
-            console.warn(this.restaurant);
+        async addRestaurant() {
+            let response = await axios.post('http://localhost:3000/restaurant', {
+                name: this.restaurant.name,
+                contact: this.restaurant.contact,
+                address: this.restaurant.address,
+                logo: this.restaurant.logo
+            })
+            if (response.status == 201) {
+                this.$router.push({ name: 'Home' })
+            }
         }
     }
 }
