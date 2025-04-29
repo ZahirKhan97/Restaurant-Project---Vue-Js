@@ -26,7 +26,7 @@
               <td>
                 <button class="btn btn-sm btn-info me-2">View</button>
                 <router-link :to="`/update-restaurant/${restaurant.id}`" class="btn btn-sm btn-warning me-2">Edit</router-link>
-                <button class="btn btn-sm btn-danger">Delete</button>
+                <button v-on:click="deleteRestaurant(restaurant.id)" class="btn btn-sm btn-danger">Delete</button>
               </td>
             </tr>
           </tbody>
@@ -56,6 +56,20 @@ export default {
         }
         let response = await axios.get('http://localhost:3000/restaurant');
         this.restaurants = response.data;
+    },
+    methods: {
+        async deleteRestaurant(id) {
+            if (confirm('Are you sure you want to delete this restaurant?')) {
+                let response = await axios.delete(`http://localhost:3000/restaurant/${id}`);
+                if (response.status == 200) {
+                    this.restaurants = this.restaurants.filter(restaurant => restaurant.id !== id);
+                    alert('Restaurant deleted successfully!');
+                } else {
+                    alert('Failed to delete restaurant!');
+                } 
+            }
+            
+        }
     }
 }
 </script>
